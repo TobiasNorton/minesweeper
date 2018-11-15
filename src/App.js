@@ -9,6 +9,9 @@ class App extends Component {
       <div>
         <h1>Minesweeper</h1>
         <Board />
+        <div class="new-game">
+          <button>New Game</button>
+        </div>
       </div>
     )
   }
