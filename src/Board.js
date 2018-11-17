@@ -28,7 +28,6 @@ class Board extends Component {
   newGame = () => {
     axios.post('https://minesweeper-api.herokuapp.com/games').then(response => {
       console.log(response.data)
-
       this.setState({
         game: response.data
       })
@@ -43,6 +42,14 @@ class Board extends Component {
     }
   }
 
+  check = () => {
+    axios
+      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check`)
+      .then(response => {
+        console.log(response.data)
+      })
+  }
+
   render() {
     return (
       <div>
@@ -51,7 +58,11 @@ class Board extends Component {
           <table>
             <tbody>
               <tr>
-                <Cell value={this.state.game.board[0][0]} />
+                <Cell
+                  onClick={this.check}
+                  oncontextmenu={this.flag}
+                  value={this.state.game.board[0][0]}
+                />
                 <Cell value={this.state.game.board[0][1]} />
                 <Cell value={this.state.game.board[0][2]} />
                 <Cell value={this.state.game.board[0][3]} />
