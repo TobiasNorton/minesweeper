@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 
 class Cell extends Component {
   assignCellRowsAndColumns = () => {
-    let selectedCoordinates = this.props.coordinates
-    this.props.check(selectedCoordinates)
+    let theRow = this.props.row
+    let theColumn = this.props.column
+    this.props.check(theRow, theColumn)
   }
 
   render() {

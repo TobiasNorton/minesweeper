@@ -10,7 +10,7 @@ class Board extends Component {
       game: {
         id: 0,
         board: [
-          ['Yo', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -42,15 +42,13 @@ class Board extends Component {
     }
   }
 
-  check = selectedCoordinates => {
-    console.log(selectedCoordinates)
+  check = (row, column) => {
+    console.log(row, column)
     axios
-      .post(
-        `https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check` //, {
-        //   row: row,
-        //   col: column
-        // }
-      )
+      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check`, {
+        row: row,
+        col: column
+      })
       .then(response => {
         console.log(response.data)
       })
@@ -63,22 +61,35 @@ class Board extends Component {
         <div className="board">
           <table>
             <tbody>
-              <tr>
-                <Cell
-                  row={0}
-                  column={0}
-                  oncontextmenu={this.flag}
-                  coordinates={this.state.game.board[0][0]}
-                  check={this.check}
-                />
-                {/* <Cell value={this.state.game.board[0][1]} />
+              {this.state.game.board.map((row, rowIndex) => {
+                return (
+                  <tr key={rowIndex}>
+                    {row.map((value, columnIndex) => {
+                      return (
+                        <Cell
+                          value={value}
+                          row={rowIndex}
+                          column={columnIndex}
+                          key={columnIndex}
+                          oncontextmenu={this.flag}
+                          thing={this.something}
+                          // coordinates={this.state.game.board[0][0]}
+                          check={this.check}
+                        />
+                      )
+                    })}
+                  </tr>
+                )
+              })}
+              {/* <tr> */}
+              {/* <Cell value={this.state.game.board[0][1]} />
                 <Cell value={this.state.game.board[0][2]} />
                 <Cell value={this.state.game.board[0][3]} />
                 <Cell value={this.state.game.board[0][4]} />
                 <Cell value={this.state.game.board[0][5]} />
                 <Cell value={this.state.game.board[0][6]} />
                 <Cell value={this.state.game.board[0][7]} /> */}
-              </tr>
+              {/* </tr> */}
               {/* <tr>
                 <Cell value={this.state.game.board[1][0]} />
                 <Cell value={this.state.game.board[1][1]} />
