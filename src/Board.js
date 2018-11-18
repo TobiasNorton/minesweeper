@@ -43,15 +43,33 @@ class Board extends Component {
   }
 
   check = (row, column) => {
-    console.log(row, column)
+    console.log(`Cell [${row}, ${column}] was checked.`)
     axios
-      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check`, {
+      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.game.id}/check`, {
         row: row,
         col: column
       })
       .then(response => {
-        console.log(response.data)
+        this.setState({
+          game: response.data
+        })
       })
+    console.log(this.state.game.state)
+  }
+
+  flag = (row, column) => {
+    console.log(`Cell [${row}, ${column}] was flagged.`)
+    axios
+      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.game.id}/flag`, {
+        row: row,
+        col: column
+      })
+      .then(response => {
+        this.setState({
+          game: response.data
+        })
+      })
+    console.log(this.state.game.state)
   }
 
   render() {
@@ -71,10 +89,10 @@ class Board extends Component {
                           row={rowIndex}
                           column={columnIndex}
                           key={columnIndex}
-                          oncontextmenu={this.flag}
-                          thing={this.something}
+                          id={this.state.id}
                           // coordinates={this.state.game.board[0][0]}
                           check={this.check}
+                          flag={this.flag}
                         />
                       )
                     })}
