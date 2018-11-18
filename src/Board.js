@@ -45,10 +45,12 @@ class Board extends Component {
   check = selectedCoordinates => {
     console.log(selectedCoordinates)
     axios
-      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check`, {
-        row: row,
-        col: column
-      })
+      .post(
+        `https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check` //, {
+        //   row: row,
+        //   col: column
+        // }
+      )
       .then(response => {
         console.log(response.data)
       })
