@@ -16,6 +16,11 @@ h1 {
   text-align: center;
 }
 
+.game-results {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
 p {
   text-align: center;
 }
@@ -34,6 +39,19 @@ td {
 
 td:hover {
   cursor: pointer;
+}
+
+.bomb,
+.open,
+.one,
+.two,
+.three,
+.four,
+.five,
+.six,
+.seven,
+.eight {
+  background-color: hsl(214, 0%, 92%);
 }
 
 .new-game {

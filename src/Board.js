@@ -43,28 +43,29 @@ class Board extends Component {
   }
 
   check = (row, column) => {
-    console.log(`Cell [${row}, ${column}] was checked.`)
+    console.log(`Cell [${row}, ${column}] was checked`)
     axios
       .post(`https://minesweeper-api.herokuapp.com/games/${this.state.game.id}/check`, {
         row: row,
         col: column
       })
       .then(response => {
+        console.log(`Game status: ${response.data.state}`)
         this.setState({
           game: response.data
         })
       })
-    console.log(this.state.game.state)
   }
 
   flag = (row, column) => {
-    console.log(`Cell [${row}, ${column}] was flagged.`)
+    console.log(`Cell [${row}, ${column}] was flagged`)
     axios
       .post(`https://minesweeper-api.herokuapp.com/games/${this.state.game.id}/flag`, {
         row: row,
         col: column
       })
       .then(response => {
+        console.log(`Game status: ${response.data.state}`)
         this.setState({
           game: response.data
         })
@@ -72,9 +73,21 @@ class Board extends Component {
     console.log(this.state.game.state)
   }
 
+  gameResults = () => {
+    if (this.state.game.state === 'win') {
+      console.log('Game won!')
+      return <p className="game-results">You Win!</p>
+    }
+    if (this.state.game.state === 'lost') {
+      console.log('Game lost!')
+      return <p className="game-results">Game Over!</p>
+    }
+  }
+
   render() {
     return (
       <div>
+        {this.gameResults()}
         {this.gameDescription()}
         <div className="board">
           <table>
