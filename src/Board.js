@@ -10,7 +10,7 @@ class Board extends Component {
       game: {
         id: 0,
         board: [
-          [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+          ['Yo', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
           [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -42,9 +42,13 @@ class Board extends Component {
     }
   }
 
-  check = () => {
+  check = selectedCoordinates => {
+    console.log(selectedCoordinates)
     axios
-      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check`)
+      .post(`https://minesweeper-api.herokuapp.com/games/${this.state.games.id}/check`, {
+        row: row,
+        col: column
+      })
       .then(response => {
         console.log(response.data)
       })
@@ -59,19 +63,21 @@ class Board extends Component {
             <tbody>
               <tr>
                 <Cell
-                  onClick={this.check}
+                  row={0}
+                  column={0}
                   oncontextmenu={this.flag}
-                  value={this.state.game.board[0][0]}
+                  coordinates={this.state.game.board[0][0]}
+                  check={this.check}
                 />
-                <Cell value={this.state.game.board[0][1]} />
+                {/* <Cell value={this.state.game.board[0][1]} />
                 <Cell value={this.state.game.board[0][2]} />
                 <Cell value={this.state.game.board[0][3]} />
                 <Cell value={this.state.game.board[0][4]} />
                 <Cell value={this.state.game.board[0][5]} />
                 <Cell value={this.state.game.board[0][6]} />
-                <Cell value={this.state.game.board[0][7]} />
+                <Cell value={this.state.game.board[0][7]} /> */}
               </tr>
-              <tr>
+              {/* <tr>
                 <Cell value={this.state.game.board[1][0]} />
                 <Cell value={this.state.game.board[1][1]} />
                 <Cell value={this.state.game.board[1][2]} />
@@ -140,7 +146,7 @@ class Board extends Component {
                 <Cell value={this.state.game.board[7][5]} />
                 <Cell value={this.state.game.board[7][6]} />
                 <Cell value={this.state.game.board[7][7]} />
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>
