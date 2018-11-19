@@ -26,6 +26,7 @@ class Board extends Component {
   }
 
   newGame = () => {
+    document.querySelector('.game-results').classList.add('hidden')
     axios.post('https://minesweeper-api.herokuapp.com/games').then(response => {
       console.log(response.data)
       this.setState({
@@ -74,21 +75,23 @@ class Board extends Component {
   }
 
   gameResults = () => {
-    if (this.state.game.state === 'win') {
+    if (this.state.game.state === 'won') {
       console.log('Game won!')
-      return <p className="game-results">You Win!</p>
+      document.querySelector('.game-results').classList.remove('hidden')
     }
     if (this.state.game.state === 'lost') {
       console.log('Game lost!')
-      return <p className="game-results">Game Over!</p>
+      document.querySelector('.game-results').classList.remove('hidden')
+      document.querySelector('.game-results').textContent = 'Game Over!'
     }
   }
 
   render() {
     return (
       <div>
+        {/* {this.clicked()} */}
+        <p className="game-results hidden">You Win!</p>
         {this.gameResults()}
-        {this.gameDescription()}
         <div className="board">
           <table>
             <tbody>
@@ -103,7 +106,6 @@ class Board extends Component {
                           column={columnIndex}
                           key={columnIndex}
                           id={this.state.id}
-                          // coordinates={this.state.game.board[0][0]}
                           check={this.check}
                           flag={this.flag}
                         />
@@ -194,6 +196,12 @@ class Board extends Component {
             </tbody>
           </table>
         </div>
+        {this.gameDescription()}
+        {/* <select>
+          <option>Easy</option>
+          <option>Medium</option>
+          <option>Hard</option>
+        </select> */}
         <div className="new-game">
           <button onClick={this.newGame}>New Game</button>
         </div>
