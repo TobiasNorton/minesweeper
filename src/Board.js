@@ -26,7 +26,7 @@ class Board extends Component {
   }
 
   newGame = () => {
-    document.querySelector('.game-results').classList.add('hidden')
+    // document.querySelector('.game-results').classList.add('hidden')
     axios.post('https://minesweeper-api.herokuapp.com/games').then(response => {
       console.log(response.data)
       this.setState({
@@ -77,20 +77,21 @@ class Board extends Component {
   gameResults = () => {
     if (this.state.game.state === 'won') {
       console.log('Game won!')
-      document.querySelector('.game-results').classList.remove('hidden')
+      return <h3 className="game-results">You Did It!</h3>
+      // document.querySelector('.game-results').classList.remove('hidden')
     }
     if (this.state.game.state === 'lost') {
       console.log('Game lost!')
-      document.querySelector('.game-results').classList.remove('hidden')
-      document.querySelector('.game-results').textContent = 'Game Over!'
+      return <h3 className="game-results">Game Over!</h3>
+      // document.querySelector('.game-results').classList.remove('hidden')
+      // document.querySelector('.game-results').textContent = 'Game Over!'
     }
   }
 
   render() {
     return (
       <div>
-        {/* {this.clicked()} */}
-        <h3 className="game-results hidden">You Win!</h3>
+        {/* <h3 className="game-results hidden">You Win!</h3> */}
         {this.gameResults()}
         <div className="board">
           <table>

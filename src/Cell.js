@@ -20,7 +20,8 @@ class Cell extends Component {
     this.props.flag(theRow, theColumn)
   }
 
-  symbols = { '*': '💥', F: '🚩', '@': '🚩', _: ' ' }
+  symbols = { '*': '💥', F: '🚩', '@': '💣', _: ' ' }
+
   render() {
     return (
       <td
