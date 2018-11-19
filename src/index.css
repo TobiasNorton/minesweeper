@@ -11,11 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* @font-face {
-  font-family: 'Lemonism', sans-serif;
-  src: url('./lemonismDEMO.otf');
-} */
-
 @font-face {
   font-family: 'Cartoonish', sans-serif;
   src: url('./fonts/Cartoonish.ttf');
