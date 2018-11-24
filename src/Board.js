@@ -110,7 +110,7 @@ class Board extends Component {
           <table>
             <tbody>
               <tr>
-                <td colSpan={this.state.game.board[0].length}>
+                <td className="header-footer" colSpan={this.state.game.board[0].length}>
                   <select value={this.state.difficulty} onChange={this.setDifficulty}>
                     <option value="0">Easy</option>
                     <option value="1">Intermediate</option>
@@ -138,7 +138,7 @@ class Board extends Component {
                 )
               })}
               <tr>
-                <td colSpan={this.state.game.board[0].length}>
+                <td className="header-footer" colSpan={this.state.game.board[0].length}>
                   {this.state.game.mines} mines left
                 </td>
               </tr>
