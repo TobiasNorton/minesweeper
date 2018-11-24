@@ -110,6 +110,9 @@ class Board extends Component {
                   </tr>
                 )
               })}
+              <tr>
+                <td colSpan="8">{this.state.game.mines} mines left</td>
+              </tr>
             </tbody>
           </table>
         </div>
