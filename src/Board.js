@@ -7,6 +7,7 @@ class Board extends Component {
     super(props)
 
     this.state = {
+      difficulty: 0,
       game: {
         id: 0,
         board: [
@@ -26,12 +27,15 @@ class Board extends Component {
   }
 
   newGame = () => {
-    axios.post('https://minesweeper-api.herokuapp.com/games').then(response => {
-      console.log(response.data)
-      this.setState({
-        game: response.data
+    console.log(this.state.difficulty)
+    axios
+      .post('https://minesweeper-api.herokuapp.com/games', { difficulty: this.state.difficulty })
+      .then(response => {
+        console.log(response.data)
+        this.setState({
+          game: response.data
+        })
       })
-    })
   }
 
   gameDescription = () => {
@@ -92,6 +96,12 @@ class Board extends Component {
     }
   }
 
+  setDifficulty = event => {
+    this.setState({
+      difficulty: parseInt(event.target.value)
+    })
+  }
+
   render() {
     return (
       <div>
@@ -100,8 +110,8 @@ class Board extends Component {
           <table>
             <tbody>
               <tr>
-                <td colSpan="8">
-                  <select>
+                <td colSpan={this.state.game.board[0].length}>
+                  <select value={this.state.difficulty} onChange={this.setDifficulty}>
                     <option value="0">Easy</option>
                     <option value="1">Intermediate</option>
                     <option value="2">Expert</option>
@@ -128,7 +138,9 @@ class Board extends Component {
                 )
               })}
               <tr>
-                <td colSpan="8">{this.state.game.mines} mines left</td>
+                <td colSpan={this.state.game.board[0].length}>
+                  {this.state.game.mines} mines left
+                </td>
               </tr>
             </tbody>
           </table>
