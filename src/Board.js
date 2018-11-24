@@ -43,6 +43,10 @@ class Board extends Component {
   }
 
   check = (row, column) => {
+    if (this.state.game.id === 0) {
+      console.log('Not playing')
+      return
+    }
     console.log(`Cell [${row}, ${column}] was checked`)
     axios
       .post(`https://minesweeper-api.herokuapp.com/games/${this.state.game.id}/check`, {
@@ -58,6 +62,10 @@ class Board extends Component {
   }
 
   flag = (row, column) => {
+    if (this.state.game.id === 0) {
+      console.log('Not playing')
+      return
+    }
     console.log(`Cell [${row}, ${column}] was flagged`)
     axios
       .post(`https://minesweeper-api.herokuapp.com/games/${this.state.game.id}/flag`, {
@@ -91,6 +99,15 @@ class Board extends Component {
         <div className="board">
           <table>
             <tbody>
+              <tr>
+                <td colSpan="8">
+                  <select>
+                    <option value="0">Easy</option>
+                    <option value="1">Intermediate</option>
+                    <option value="2">Expert</option>
+                  </select>
+                </td>
+              </tr>
               {this.state.game.board.map((row, rowIndex) => {
                 return (
                   <tr key={rowIndex}>
