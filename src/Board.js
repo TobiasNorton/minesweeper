@@ -26,8 +26,6 @@ class Board extends Component {
     }
   }
 
-  // Difficulty preference, mines left and post-game flagged mines emoji set
-
   newGame = () => {
     console.log(this.state.difficulty)
     axios
