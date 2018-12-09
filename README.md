@@ -1,7 +1,7 @@
 # Minesweeper
 
 <p align="center">
-  <img src="https://github.com/TobiasNorton/photo-gallery/blob/master/src/FavoriteArtists.gif?raw=true" alt=""/>
+  <img src="https://github.com/TobiasNorton/minesweeper/blob/master/src/Minesweeper.gif?raw=true" alt="Minesweeper animation"/>
 </p>
 
 See it live here: https://tobiasnorton-minesweeper.surge.sh/
