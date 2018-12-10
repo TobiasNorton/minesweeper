@@ -13,3 +13,7 @@ See it live here: https://tobiasnorton-minesweeper.surge.sh/
 - Working with an API, the Axios library is used to POST requests. The state is then updated and changes are passed down to React components and the user interface updates.
 
 - Built with JavaScript, React.js, the Axios library, and CSS
+
+https://www.javascript.com/
+https://reactjs.org/
+https://github.com/axios/axios
